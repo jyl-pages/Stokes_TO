@@ -25,5 +25,10 @@ In the command tool, go to the .../complex/bin/win/fluid_topo/Release folder, ty
 ```
 ./fluid_topo.exe -driver 0 -test 0 -s 256 -o output -frac 0.15 -lf 40
 ```
-Here, -s for resolution, -o for file name to write result, -frac for volume fraction, and -lf for optimization it
+Here, -s for resolution, -o for file name to write result, -frac for volume fraction, and -lf for optimization iteration.
 
+To visualize the result, type:
+```
+./opengl_viewer.exe -m fluid_dec -o output
+```
+which will open a opengl window. Type p for play, g for hide/display background grid, v for hide/display velocity, x for hide/display density distribution.
