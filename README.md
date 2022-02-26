@@ -1,133 +1,17 @@
-[![libWetCloth](http://www.cs.columbia.edu/cg/raymond/tighten_the_towel.jpg)](http://www.cs.columbia.edu/cg/wetcloth/)
 
-libWetCloth
+GPU_Stokes_TO
 ================
-libWetCloth is an open source project for the physical simulation of liquid and wet cloth or yarns. It has been compiled and tested on Mac OS X (with both Intel and Apple M1 chips), Ubuntu Linux, Windows, and licensed under the Mozilla Public License v. 2.0.
-
-We would like to hear from you if you appreciate this work.
-
-It is the original implementation of paper A Multi-Scale Model for Simulating Liquid-Fabric Interactions ( refer to our project page for more details: http://libWetCloth.info, or http://www.cs.columbia.edu/cg/wetcloth/ ). This code base contains the following parts:
-
- - A liquid simulator implementing the affine-particle-in-cell method.
- - A cloth simulator implementing the elastic thin shell model.
- - A yarn simulator implementing the discrete elastic rod (DER) / viscous thread model.
- - A cloth/yarn collision handler based on anisotropic elastoplasticity, discretized with augmented, moving least sqaures material point method (AMLS-MPM). 
- - A two-way coupling method based on mixture theory, between the cloth, yarn and liquid, handling dragging, buoyancy, capturing and dripping effect.
-
-Directories
---------------------
-The directories of this code repository are structured as following:
-```
-libwetcloth
-│
-└───assets: files to define scenarios
-│   │
-│   └───buoyancy_tests: scenarios to test buoyancy effects
-│   │
-│   └───drag_tests: scenarios to test different drag models
-│   │
-│   └───general_examples: scenarios used in the paper as demos
-│   │
-│   └───parameter_tests: scenarios to test various liquid materials 
-│   │                    and yarn settings
-│   │
-│   └───ring_tests: the ring test scenario used in the paper
-│   │
-│   └───unit_tests: simple scenarios to test dynamics and collisions 
-│                   (including dry yarn/cloth)
-│
-└───cmake: CMake files to find packages
-│
-└───houdini: Houdini scenes to produce renderings used in the paper
-│
-└───include: thirdparty libraries (Eigen, libIGL, etc.)
-│
-└───libWetCloth
-    │
-    └───App: user-interface to interact with simulation
-    │
-    └───Core: actual simulation code
-        │
-        └───DER: code for the discrete elastic rods (for yarns/hairs)
-        │   │
-        │   └───Dependencies: computing the geometric information
-        │   │                 used in the discrete elastic rods
-        │   │                 model, including the reference/material
-        │   │                 frames, reference/material twists, and
-        │   │                 the material curvatures.
-        │   │
-        │   └───Forces: computing the stretching, bending, and twisting
-        │               forces and their Jacobians.
-        │
-        └───ThinShell: code for the discrete elastic thin shell
-        │   │          (for triangular clothes) 
-        │   │
-        │   └───Forces: computing the stretching and bending forces, as
-        │               well as their Jacobians.
-        │
-        └───PCGSolver: PCG solver with the MIC preconditioner
-```
-
 Dependencies
 --------------------
-libWetCloth depends on following libraries (some of them have been included in the code base for all platforms, marked with an asterisk):
-
-- Eigen* (http://eigen.tuxfamily.org/)
-- RapidXML* (http://rapidxml.sourceforge.net)
-- tclap* (http://tclap.sourceforge.net)
-- libIGL* (https://github.com/libigl/libigl)
-- AntTweakBar (http://anttweakbar.sourceforge.net/doc/)
-- Intel TBB (https://www.threadingbuildingblocks.org)
-- FreeGLUT (http://freeglut.sourceforge.net/)
-- libPNG (https://libpng.sourceforge.io/)
-- zlib (https://www.zlib.net/)
-
-On Mac OS X or Linux-based systems, most of the dependencies are either included, or can be easily installed with Homebrew (https://brew.sh) or the APT package handling utility. For example, with Homebrew on Mac OS X, these external dependencies can be installed through
-```
-brew install anttweakbar tbb freeglut libpng zlib
-```
-
-On Windows you may need manually download and compile some of them (e.g. AntTweakBar, TBB, libPNG). For the ease of compilation, we provide a package containing all the headers and pre-compiled thirdparty libraries (except for those that have been included for all platforms). Please refer to the `On Windows` section below for more details.
-
-You may also compile a version that directly run simulation in the console, by turning off the `USE_OPENGL` switch in the CMake settings. When this switch is turned off, dependencies such as **FreeGLUT, libPNG, zlib, and AntTweakBar** are no longer necessary to compile libWetCloth.
-
-For more details, please refer to the compilation section below.
+CUDA 11.0+
 
 Compilation
 -----------------
-libWetCloth has been tested with AppleClang (under Mac OS X), GCC 4.8+ (under Linux), and Microsoft Visual Studio (under Windows 10).
+Compilation has been tested with Microsoft Visual Studio 19 (under Windows 10).
 
-To compile libWetCloth, you'll need CMake on Mac OS X or Linux, or CMake-GUI (https://cmake.org) on Windows.
+To compile libWetCloth, you'll need CMake-GUI 3.21+ (https://cmake.org) on Windows.
 
-On Mac OS X or Linux:
 
-1. make a `<build>` directory, say, just *build*, with *mkdir build*, enter the `<build>` directory, type *cmake ..*
-2. Optionally you can adjust the options with *ccmake ..* In some cases there can be some packages that cmake cannot find. You need to manually specify their paths through ccmake then.
-3. type *make* to compile the code. For speeding up the compilation process you may use *make -j*.
-
-On Windows:
-
-You may download the pre-compiled package (https://www.cs.columbia.edu/cg/raymond/libwetcloth_thirdparty_win64.zip) that contains the x64 pre-compiled binaries for AntTweakBar, Intel TBB, GLUT, libPNG and zlib, unpack it somewhere (e.g., `<libwetcloth directory>/thirdparty`), and then specify the missing directories to the path containing the headers or the compiled libraries. If you compile it manually, please make sure you have picked the libraries corresponding to the architecture you have selected (say, 32-bit libraries for x86, and 64-bit libraries for x64).
-
-If our provided third-party libraries are used, the following CMake variables should be set before configuration (replace the `<libwetcloth_thirdparty_win64>` with the actual unpacked directory path. If `<libwetcloth directory>/thirdparty` is used for `<libwetcloth_thirdparty_win64>`, the dependencies should be found by CMake automatically):
-- `ANT_TWEAK_BAR_INCLUDE_DIR`: `<libwetcloth_thirdparty_win64>/include/AntTweakBar`
-- `ANT_TWEAK_BAR_LIBRARY`: `<libwetcloth_thirdparty_win64>/lib/AntTweakBar64.lib`
-- `FREEGLUT_LIBRARY`: `<libwetcloth_thirdparty_win64>/lib/freeglut.lib`
-- `PNG_LIBRARY_DEBUG`: `<libwetcloth_thirdparty_win64>/lib/libpng16_staticd.lib`
-- `PNG_LIBRARY_RELEASE`: `<libwetcloth_thirdparty_win64>/lib/libpng16_static.lib`
-- `PNG_PNG_INCLUDE_DIR`: `<libwetcloth_thirdparty_win64>/include/libpng`
-- `TBB_INCLUDE_DIRS`: `<libwetcloth_thirdparty_win64>/include`
-- `TBB_tbb_LIBRARY_DEBUG`: `<libwetcloth_thirdparty_win64>/lib/tbb_debug.lib`
-- `TBB_tbb_LIBRARY_RELEASE`: `<libwetcloth_thirdparty_win64>/lib/tbb.lib`
-- `ZLIB_INLCUDE_DIR`: `<libwetcloth_thirdparty_win64>/include/zlib`
-- `ZLIB_LIBRARY_DEBUG`: `<libwetcloth_thirdparty_win64>/lib/zlibstaticd.lib`
-- `ZLIB_LIBRARY_RELEASE`: `<libwetcloth_thirdparty_win64>/lib/zlibstatic.lib`
-
-1. open CMake-GUI, enter the correct directory for source code and build. Then click *Configure*, choose your installed version of the Microsoft Visual Studio.
-2. after configuration you may find several libraries not found (with notifications of errors), check the *Advanced* box and *specify those missing header path and libraries manually*. For example, if Eigen is missing, then please specify the EIGEN3_INCLUDE_DIR to the path of directory we provided. 
-3. click generate after fixing all missing variables to generate your Visual Studio solution.
-4. open the Visual Studio solution and compile the code.
-5. before running the demo, all the compiled dynamic linking libraries (DLLs) for your dependencies should be accessible from the executable. The DLLs should be either in the same directory with the executable, or your PATH environment variable that can be changed in system settings. You may copy the DLLs (we include them in `<libwetcloth_thirdparty_win64>/bin` as the pre-compiled version) to the path of the compiled executable (`<build>/libWetCloth/App/Release` or `<build>/libWetCloth/App/Debug`) or you may simply copy them into your System32 (x64) or SysWOW64 (x86) directories.
 
 Run the Demo
 --------------------
