@@ -1,0 +1,42 @@
+#####################################################################################
+# This is the configuration file for hosting the documents on Read the Docs 
+
+#####################################################################################
+# To try building html files locally:
+# 1. Make sure that you already have python and pip installed
+# 2. pip install -U sphinx
+# 3. pip install sphinx_rtd_theme 
+#    (This is the theme we use)
+# 4. pip install recommonmark
+#    (To use markdown files) 
+# 4. cd the simplex folder, do 
+#    sphinx-build -b html docs htmls
+# 5. Open the index file in the htmls folder and you'll see the files generated! 
+######################################################################################
+
+# .readthedocs.yml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+# Required
+version: 2
+
+# Build documentation in the docs/ directory with Sphinx
+sphinx:
+  builder: html
+  configuration: docs/conf.py
+  # fail_on_warning: true
+
+# Build documentation with MkDocs
+#mkdocs:
+#  configuration: mkdocs.yml
+
+# Optionally build your docs in additional formats such as PDF
+formats:
+  - pdf
+
+# Optionally set the version of Python and requirements required to build your docs
+python:
+   version: 3.7
+#   install:
+#     - requirements: docs/requirements.txt

@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 2.8.7)
+set(proj_name sketch_pad)
+project(${proj_name})
+include(${PROJECT_SOURCE_DIR}/../../script/functions.cmake)
+
+init_project()
+set(USE_GEOMETRY ON)
+set(USE_VIEWER ON)
+set(USE_IMGUI ON)
+set(USE_STB ON)
+set(USE_TINY_OBJ_LOADER ON)
+set(USE_TRI2D ON)
+
+add_project()
+link_project()

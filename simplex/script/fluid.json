@@ -1,0 +1,76 @@
+{
+	"objects":
+	[
+		{
+			"type": 		"Grid",
+			"name": 		"grid",
+			"vis": 			true,
+			"vis_key": 		"g"
+		},
+		{	
+			"type": 		"VectorField",
+			"name": 		"velocity",
+			"vis": 			false,
+			"vis_key": 		"v",
+			"grid_name": 	"grid",
+			"color_type": 	"jet",
+			"storage_type": "cell"
+		},
+		{	
+			"type": 		"ScalarField",
+			"name": 		"phi",
+			"grid_name": 	"grid",
+			"vis": 			false,
+			"vis_key": 		"l",
+			"color_type": 	"jet",
+			"storage_type": "cell"
+		},
+		{
+			"type": 		"SegmentMesh",
+			"name": 		"segment_mesh",
+			"vis": 			true,
+			"vis_key": 		"s",
+			"line_width": 	4.0,
+			"polygon_mode": "Wireframe",
+			"shading_mode": "None",
+			"color":		[1.0,1.0,1.0,1.0]
+		},
+		{
+			"type": 		"TriangleMesh",
+			"name": 		"triangle_mesh",
+			"vis": 			true,
+			"vis_key": 		"t",
+			"line_width": 	4.0,
+			"polygon_mode": "Wireframe",
+			"shading_mode": "None",
+			"color":		[0.0,1.0,0.0,1.0]
+		},		
+		{
+			"type": 		"Particles",
+			"name": 		"psi_D",
+			"vis": 			true,
+			"vis_key": 		"d",
+			"color":		[1.0,0.0,0.0,1.0]
+		},
+		{
+			"type": 		"Particles",
+			"name": 		"psi_N",
+			"vis": 			true,
+			"vis_key": 		"n",
+			"color":		[0.0,0.0,1.0,1.0]
+		},
+		{
+			"type": 			"Particles",
+			"name": 			"particles",
+			"vis": 				true,
+			"vis_key": 			"f",
+			"pv_vis":			false,
+			"pv_vis_key": 		"v",
+			"pf_vis":			false,
+			"pf_vis_key": 		"f",			
+			"particle_type": 	"Dot",
+			"point_size": 		5.0,
+			"color":			[1.0,0.0,0.0,1.0]
+		}
+	]
+}

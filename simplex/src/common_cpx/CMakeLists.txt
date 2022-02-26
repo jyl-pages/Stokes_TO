@@ -1,0 +1,7 @@
+if(NOT USE_CPX)
+  return()
+endif()
+init_target(common_cpx)
+use_ext_libs(LINK "cuda;")
+use_src_libs(COMPILE "reservoir;")
+setup_src_target()

@@ -1,0 +1,12 @@
+/build
+/bin
+/lib
+/xproj
+/xsrc
+/ext/libtorch
+/ext/pybind11/build
+/.vscode
+script/plex-runner/*.pkl
+script/plex-runner/data
+script/plex-runner/__pycache__
+proj/bin

@@ -1,0 +1,43 @@
+#############################
+## Here the * is used to denote your customized value
+
+## Common properties that can be bond to any object
+name: 			[string] 	*	(file name)
+vis:			[bool]		*	(true OR false for visability)
+vis_key:		[string]	* 	(default values were set in OpenGLViewerConfiguable.cpp)
+color:			[vec4]		* 	(e.g., [1.0, 0.0, 0.0, 1.0])
+
+## OpenGLGrid
+type: 			[string] 	"Grid"
+
+## OpenGLParticles
+type:			[string]	"Particles"
+point_size:		[float]		*	(size of OpenGL point)
+particle_type:	[string]	* 	("Dot" OR "Circle" OR "Sphere")
+particle_size:	[float]		* 	(size of sphere or circle)
+pv_vis:			[bool]		* 	(true or false, draw particle velocity)
+pv_vis_key:		[string]	*	(key to visualize particle velocity)
+pf_vis:			[bool]		* 	(true or false, draw particle force)
+pf_vis_key:		[string]	*	(key to visualize particle force)
+
+## OpenGLSegmentMesh
+type: 			[string]	"SegmentMesh"
+shading_mode:	[string]	* (one of {None=0, Lighting, TexOnly, TexLighting, Sprite, Shadow}. You should use None if you want to set the attribute color directly)
+
+## OpenGLTriangleMesh, the same as OpenGLSegmentMesh
+type: 			[string]	"TriangleMesh"
+...
+
+## OpenGLTetrahedronMesh, the same as OpenGLSegmentMesh
+type: 			[string]	"TetrahedronMesh"
+...
+
+## OpenGLGridField -- Scalar field on a grid
+type:			[string]	"ScalarField"
+grid_name:		[string]	* (name of the grid on which the field is stored)
+color_type:		[string]	* ("Jet" OR "Hot" OR "Den" OR "Mat")
+store_type:		[string]	* ("Cell" OR "Node")
+
+## OpenGLGridVectors -- Vector field on a grid, the same as scalar field
+type:			[string]	"VectorField"
+...

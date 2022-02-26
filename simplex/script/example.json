@@ -1,0 +1,36 @@
+{
+	"objects":
+	[
+		{
+			"type": "TriangleMesh",
+			"name": "triangle_mesh",
+			"vis": true,
+			"vis_key": "t",
+			"polygon_mode": "Fill",
+			"color":[0.0,1.0,0.0,1.0]
+		},		
+		{
+			"type": "Particles",
+			"name": "psi_D",
+			"vis": true,
+			"vis_key": "d",
+			"color":[1.0,0.0,0.0,1.0]
+		},
+		{
+			"type": "Particles",
+			"name": "psi_N",
+			"vis": true,
+			"vis_key": "n",
+			"color":[0.0,0.0,1.0,1.0]
+		},
+		{
+			"type": "Particles",
+			"name": "particles",
+			"particle_type": "Dot",
+			"point_size": 5.0,
+			"vis": true,
+			"vis_key": "f",
+			"color":[1.0,0.0,0.0,1.0]
+		}
+	]
+}

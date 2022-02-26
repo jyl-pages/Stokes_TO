@@ -1,0 +1,8 @@
+/build
+/bin
+/lib
+/xproj
+/xsrc
+/ext/libtorch
+/proj/archive
+/proj/topo_opt_voronoi/voronoi_boundary_data/*

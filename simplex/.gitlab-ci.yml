@@ -1,0 +1,25 @@
+build:
+    image: nvidia/cuda:latest
+    stage: build
+    script:
+        - echo "Building"
+        - mkdir build
+        - nvcc --version
+        - apt-get update && apt-get -y install cmake
+        - apt-get -y install libglu1-mesa-dev freeglut3-dev mesa-common-dev libglew-dev
+        - mkdir -p build/_install/cmake-build-unix
+        - cd build/_install/cmake-build-unix/
+        - cmake ../../../proj/_install/
+        - make
+
+pages:
+    script:
+        - apt-get update -qy
+        - apt-get install -y python-dev python-pip
+        - pip install -U sphinx
+        - pip install sphinx_rtd_theme 
+        - pip install recommonmark
+        - sphinx-build -b html docs public
+    artifacts:
+        paths:
+            - public

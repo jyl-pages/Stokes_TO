@@ -1,0 +1,7 @@
+if(NOT USE_CPX)
+  return()
+endif()
+init_target(poisson_cpx)
+use_ext_libs(LINK "cuda;openmp;physbam;")
+use_src_libs(COMPILE "common_cpx")
+setup_src_target()

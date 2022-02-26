@@ -1,0 +1,46 @@
+{
+	"objects":
+	[
+		{
+			"type": 			"Particles",
+			"name": 			"particles",
+			"particle_type": 	"Dot",
+			"point_size": 		8.0,
+			"vis": 				true,
+			"vis_key": 			"x",
+			"pv_vis":			true,
+			"pv_vis_key": 		"v",
+			"pf_vis":			true,
+			"pf_vis_key": 		"f",
+			"color":[1.0,1.0,1.0,1.0]
+		},	
+		{
+			"type": "SegmentMesh",
+			"name": "segment_mesh",
+			"vis": true,
+			"vis_key": "s",
+			"line_width": 4.0,
+			"polygon_mode": "Wireframe",
+			"shading_mode": "None",
+			"color":[1.0,1.0,1.0,1.0]
+		},
+		{
+			"type": "TriangleMesh",
+			"name": "triangle_mesh",
+			"vis": true,
+			"vis_key": "t",
+			"polygon_mode": "Wireframe",
+			"shading_mode": "None",
+			"color":[0.0,0.0,0.0,1.0]
+		},		
+		{
+			"type": "TriangleMesh",
+			"name": "triangle_mesh",
+			"vis": true,
+			"vis_key": "t",
+			"polygon_mode": "Wireframe",
+			"shading_mode": "None",
+			"color":[0.0,1.0,0.0,1.0]
+		}
+	]
+}

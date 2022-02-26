@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "running test.bash"
+time=$(date "+%Y%m%d-%H%M%S")
+touch ${time}
+sleep 1

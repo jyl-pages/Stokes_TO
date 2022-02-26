@@ -1,0 +1,28 @@
+{
+	"objects":
+	[
+		{
+			"type": 		"TriangleMesh",
+			"name": 		"triangle_mesh",
+			"vis": 			true,
+			"vis_key": 		"t",
+			"line_width": 	4.0,
+			"polygon_mode": "Wireframe",
+			"shading_mode": "None",
+			"color":		[0.0,1.0,0.0,1.0]
+		},		
+		{
+			"type": 			"Particles",
+			"name": 			"particles",
+			"vis": 				true,
+			"vis_key": 			"f",
+			"pv_vis":			false,
+			"pv_vis_key": 		"v",
+			"pf_vis":			false,
+			"pf_vis_key": 		"f",			
+			"particle_type": 	"Dot",
+			"point_size": 		5.0,
+			"color":			[1.0,0.0,0.0,1.0]
+		}
+	]
+}
