@@ -11,7 +11,7 @@ Compilation has been tested with Microsoft Visual Studio 19 (under Windows 10).
 
 To compile libWetCloth, you'll need CMake-GUI 3.21+ (https://cmake.org) on Windows.
 
-
+Step 1. Compile dependencies: In CMake-GUI, browse source code to .../simplex/proj/_install
 
 Run the Demo
 --------------------
